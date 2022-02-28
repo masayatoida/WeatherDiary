@@ -1,0 +1,8 @@
+# Mac
+.DS_Store
+
+# Xcode
+xcuserdata
+
+#CocoaPod
+Pods/*
