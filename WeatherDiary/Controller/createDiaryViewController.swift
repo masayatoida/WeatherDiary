@@ -13,3 +13,4 @@ class createDiaryViewController: UIViewController {
         super.viewDidLoad()
     }
 }
+
