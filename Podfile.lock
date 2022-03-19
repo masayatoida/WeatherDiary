@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (5.5.0)
+  - CalculateCalendarLogic (0.5.0)
+  - FSCalendar (2.8.2)
   - Realm (10.4.0):
     - Realm/Headers (= 10.4.0)
   - Realm/Headers (10.4.0)
@@ -8,19 +10,25 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.5)
+  - CalculateCalendarLogic
+  - FSCalendar
   - RealmSwift
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - CalculateCalendarLogic
+    - FSCalendar
     - Realm
     - RealmSwift
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  CalculateCalendarLogic: d14189787cd47766e64281b2686608afea07ae4d
+  FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   Realm: d8466b2238f034a5ff7a031aed63b7dacdf0dd10
   RealmSwift: 37a93ae742667948cc094a3c6ae3d006db32b66f
 
-PODFILE CHECKSUM: bde86a8713ea524e9ab87d50dd8d5465800b6bee
+PODFILE CHECKSUM: 3fbe2e2d37f9c2218827143389bcac5077251ff8
 
 COCOAPODS: 1.11.3

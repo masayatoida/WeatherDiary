@@ -8,6 +8,8 @@ target 'WeatherDiary' do
   # Pods for WeatherDiary
   pod 'Alamofire', '~> 5.5'
   pod 'RealmSwift'
+  pod 'FSCalendar'
+  pod 'CalculateCalendarLogic' 
 
   target 'WeatherDiaryTests' do
     inherit! :search_paths
