@@ -15,9 +15,28 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Iv-gn-74X" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="uIl-II-ngd"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Tfb-yq-kct"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0Iv-gn-74X" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DcV-sx-xb7"/>
+                            <constraint firstItem="0Iv-gn-74X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ZrM-CI-H2x"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0Iv-gn-74X" secondAttribute="trailing" id="g8r-Hy-f1e"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0Iv-gn-74X" secondAttribute="bottom" id="gEZ-He-FeV"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="calendar" destination="0Iv-gn-74X" id="AhA-in-dkP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

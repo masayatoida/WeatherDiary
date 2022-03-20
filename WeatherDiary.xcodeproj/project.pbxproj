@@ -106,9 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				00EDAF5C27CC5D9400CA8D35 /* Main.storyboard */,
+				00EDAF8627CC68CE00CA8D35 /* ShowCalenderViewController.swift */,
 				00EDAF8A27CC690800CA8D35 /* CreateDiaryViewController.swift */,
 				00EDAF8C27CC692000CA8D35 /* DetailDiaryViewController.swift */,
-				00EDAF8627CC68CE00CA8D35 /* ShowCalenderViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -192,7 +192,6 @@
 				2962D60CB2B3573008ACC9E7 /* Pods-WeatherDiaryTests.debug.xcconfig */,
 				881EBCFAEDC107705D823A01 /* Pods-WeatherDiaryTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -629,6 +628,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9DBV92A7H9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherDiary/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -657,6 +657,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9DBV92A7H9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherDiary/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
