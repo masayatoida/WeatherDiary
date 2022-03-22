@@ -8,6 +8,7 @@
 import UIKit
 import FSCalendar
 import CalculateCalendarLogic
+import RealmSwift
 
 class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance{
     
@@ -57,10 +58,10 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
             return UIColor.red
         }
         let weekday = self.getWeekIdx(date)
-        if weekday == 1 {   //日曜日
+        if weekday == 1 {
             return UIColor.red
         }
-        else if weekday == 7 {  //土曜日
+        else if weekday == 7 {
             return UIColor.blue
         }
         return nil
