@@ -9,6 +9,7 @@ import UIKit
 import FSCalendar
 import CalculateCalendarLogic
 import RealmSwift
+import SwiftyJSON
 
 class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance{
     
@@ -18,6 +19,12 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         super.viewDidLoad()
         self.calendar.dataSource = self
         self.calendar.delegate = self
+    }
+    
+    @IBAction func didTapToCreateDiary(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "CreateDiary", bundle: nil)
+        let createDiaryVC = storyboard.instantiateViewController(withIdentifier: "CreateDiary") as! CreateDiaryViewController
+        self.navigationController?.pushViewController(createDiaryVC, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

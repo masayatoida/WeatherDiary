@@ -10,6 +10,7 @@ target 'WeatherDiary' do
   pod 'RealmSwift'
   pod 'FSCalendar'
   pod 'CalculateCalendarLogic' 
+  pod 'SwiftyJSON'
 
   target 'WeatherDiaryTests' do
     inherit! :search_paths
