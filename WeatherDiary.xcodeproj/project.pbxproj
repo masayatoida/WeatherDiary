@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00DBC9F627F4420E001359CF /* CreateDiary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DBC9F527F4420E001359CF /* CreateDiary.storyboard */; };
 		00EDAF5727CC5D9300CA8D35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EDAF5627CC5D9300CA8D35 /* AppDelegate.swift */; };
 		00EDAF5927CC5D9400CA8D35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EDAF5827CC5D9400CA8D35 /* SceneDelegate.swift */; };
 		00EDAF5E27CC5D9400CA8D35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00EDAF5C27CC5D9400CA8D35 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00DBC9F527F4420E001359CF /* CreateDiary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateDiary.storyboard; sourceTree = "<group>"; };
 		00EDAF5327CC5D9300CA8D35 /* WeatherDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00EDAF5627CC5D9300CA8D35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00EDAF5827CC5D9400CA8D35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,7 +107,6 @@
 		002B27EF27CC698A005C13BD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				00EDAF5C27CC5D9400CA8D35 /* Main.storyboard */,
 				00EDAF8627CC68CE00CA8D35 /* ShowCalenderViewController.swift */,
 				00EDAF8A27CC690800CA8D35 /* CreateDiaryViewController.swift */,
 				00EDAF8C27CC692000CA8D35 /* DetailDiaryViewController.swift */,
@@ -117,6 +118,8 @@
 		009EAFA627F422EB00569B23 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				00EDAF5C27CC5D9400CA8D35 /* Main.storyboard */,
+				00DBC9F527F4420E001359CF /* CreateDiary.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 			files = (
 				00EDAF6327CC5D9500CA8D35 /* LaunchScreen.storyboard in Resources */,
 				00EDAF6027CC5D9500CA8D35 /* Assets.xcassets in Resources */,
+				00DBC9F627F4420E001359CF /* CreateDiary.storyboard in Resources */,
 				00EDAF5E27CC5D9400CA8D35 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
