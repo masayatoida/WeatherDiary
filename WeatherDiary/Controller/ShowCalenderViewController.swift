@@ -3,13 +3,14 @@
 //  WeatherDiary
 //
 //  Created by 戸井田莉江 on 2022/02/28.
-//
+// 参考: - https://qiita.com/yuki1023/items/9f3416ac3c687fa31a52
 
 import UIKit
 import FSCalendar
 import CalculateCalendarLogic
 import RealmSwift
 import SwiftyJSON
+import Alamofire
 
 class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance{
     
@@ -17,6 +18,7 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getWeatherDate()
         self.calendar.dataSource = self
         self.calendar.delegate = self
     }
@@ -72,5 +74,33 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
             return UIColor.blue
         }
         return nil
+    }
+    
+    private func getWeatherDate() {
+        // TODO: - リリース前に自分用のAPIキーを取得する
+        let myAPIKey = "55b317379a06a94f5198e9c297ff0b0e"
+        let latitude = 35.729135166247495
+        let longitude = 139.71308509292876
+        let text = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&units=metric&appid=\(myAPIKey)"
+        let url = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        AF.request(url!, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON { response in
+            switch response.result {
+            case .success:
+                let json = JSON(response.data as Any)
+                let descriptionWeather = json["weather"][0]["main"].string!
+                switch descriptionWeather {
+                case "Clouds":
+                    self.navigationItem.title = "曇り"
+                case "Rain":
+                    self.navigationItem.title = "雨"
+                case "Snow":
+                    self.navigationItem.title = "雪"
+                default:
+                    self.navigationItem.title = "晴れ"
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
