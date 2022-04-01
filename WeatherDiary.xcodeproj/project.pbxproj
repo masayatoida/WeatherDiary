@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00DBC9F627F4420E001359CF /* CreateDiary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DBC9F527F4420E001359CF /* CreateDiary.storyboard */; };
+		00DBC9F827F67C34001359CF /* DiaryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DBC9F727F67C34001359CF /* DiaryData.swift */; };
 		00EDAF5727CC5D9300CA8D35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EDAF5627CC5D9300CA8D35 /* AppDelegate.swift */; };
 		00EDAF5927CC5D9400CA8D35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EDAF5827CC5D9400CA8D35 /* SceneDelegate.swift */; };
 		00EDAF5E27CC5D9400CA8D35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00EDAF5C27CC5D9400CA8D35 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		00DBC9F527F4420E001359CF /* CreateDiary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateDiary.storyboard; sourceTree = "<group>"; };
+		00DBC9F727F67C34001359CF /* DiaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryData.swift; sourceTree = "<group>"; };
 		00EDAF5327CC5D9300CA8D35 /* WeatherDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00EDAF5627CC5D9300CA8D35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00EDAF5827CC5D9400CA8D35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		002B27EE27CC697B005C13BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				00DBC9F727F67C34001359CF /* DiaryData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				00EDAF8B27CC690800CA8D35 /* CreateDiaryViewController.swift in Sources */,
 				00EDAF5727CC5D9300CA8D35 /* AppDelegate.swift in Sources */,
 				00EDAF8827CC68CE00CA8D35 /* ShowCalenderViewController.swift in Sources */,
+				00DBC9F827F67C34001359CF /* DiaryData.swift in Sources */,
 				00EDAF5927CC5D9400CA8D35 /* SceneDelegate.swift in Sources */,
 				00EDAF8D27CC692000CA8D35 /* DetailDiaryViewController.swift in Sources */,
 			);
