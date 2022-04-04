@@ -113,7 +113,6 @@
 				00EDAF8627CC68CE00CA8D35 /* ShowCalenderViewController.swift */,
 				00EDAF8A27CC690800CA8D35 /* CreateDiaryViewController.swift */,
 				00EDAF8C27CC692000CA8D35 /* DetailDiaryViewController.swift */,
-				009EAFA727F422F700569B23 /* Extensions */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -162,6 +161,7 @@
 				009EAFA627F422EB00569B23 /* View */,
 				002B27EE27CC697B005C13BD /* Model */,
 				002B27EF27CC698A005C13BD /* Controller */,
+				009EAFA727F422F700569B23 /* Extensions */,
 				00EDAF5627CC5D9300CA8D35 /* AppDelegate.swift */,
 				00EDAF5827CC5D9400CA8D35 /* SceneDelegate.swift */,
 				00EDAF6127CC5D9500CA8D35 /* LaunchScreen.storyboard */,
