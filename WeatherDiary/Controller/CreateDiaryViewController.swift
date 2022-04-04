@@ -11,8 +11,6 @@ import CoreLocation
 class CreateDiaryViewController: UIViewController {
     
     @IBOutlet private weak var eventTextfield: UITextField!
-    @IBOutlet weak var longitude: UILabel!
-    @IBOutlet weak var latitude: UILabel!
     
     var locationManager: CLLocationManager!
     // 緯度
@@ -31,30 +29,21 @@ class CreateDiaryViewController: UIViewController {
         setupLocationManager()
     }
     
-    @IBAction func didTapSave(_ sender: UIButton) {
-        saveDate()
-        navigationController?.popViewController(animated: true)
-    }
-    @IBAction func didTapDelete(_ sender: UIButton) {
-    }
-    
-    @IBAction func getLocationInfo(_ sender: UIButton) {
-        setupLocationManager()
-        
+    override func viewDidAppear(_ animated: Bool) {
         let manager = CLLocationManager()
         switch manager.authorizationStatus {
         case .restricted:
             print("OK")
-            self.latitude.text = latitudeNow
-            self.longitude.text = longitudeNow
+            print(latitudeNow)
+            print(longitudeNow)
         case .authorizedWhenInUse:
             print("ALLOK")
-            self.latitude.text = latitudeNow
-            self.longitude.text = longitudeNow
+            print(latitudeNow)
+            print(longitudeNow)
         case .authorizedAlways:
             print("ALWAYSOK")
-            self.latitude.text = latitudeNow
-            self.longitude.text = longitudeNow
+            print(latitudeNow)
+            print(longitudeNow)
         case .denied:
             print("NG")
             showAlert()
@@ -62,6 +51,18 @@ class CreateDiaryViewController: UIViewController {
             print("error")
             showAlert()
         }
+    }
+    
+    @IBAction func didTapSave(_ sender: UIButton) {
+        saveDate()
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func didTapDelete(_ sender: UIButton) {
+    }
+    
+    @IBAction func getLocationInfo(_ sender: UIButton) {
+        setupLocationManager()
     }
     
     private func saveDate() {
