@@ -1,8 +1,8 @@
 //
-//  ShowCalenderViewController.swift
-//  WeatherDiary
+// ShowCalenderViewController.swift
+// WeatherDiary
 //
-//  Created by 戸井田莉江 on 2022/02/28.
+// Created by 戸井田莉江 on 2022/02/28.
 // 参考: - https://qiita.com/yuki1023/items/9f3416ac3c687fa31a52
 
 import UIKit
@@ -12,9 +12,15 @@ import RealmSwift
 import SwiftyJSON
 import Alamofire
 
-class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance{
-    
+class ShowCalenderViewController: UIViewController {
     @IBOutlet weak var calendar: FSCalendar!
+    
+    fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
+    fileprivate lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,18 +35,7 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         self.navigationController?.pushViewController(createDiaryVC, animated: true)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
-    fileprivate lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
-    
-    func judgeHoliday(_ date : Date) -> Bool {
+    func judgeHoliday(_ date: Date) -> Bool {
         let tmpCalendar = Calendar(identifier: .gregorian)
         let year = tmpCalendar.component(.year, from: date)
         let month = tmpCalendar.component(.month, from: date)
@@ -49,31 +44,17 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         return holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
     }
     
-    func getDay(_ date:Date) -> (Int,Int,Int){
+    func getDay(_ date: Date) -> (Int, Int, Int) {
         let tmpCalendar = Calendar(identifier: .gregorian)
         let year = tmpCalendar.component(.year, from: date)
         let month = tmpCalendar.component(.month, from: date)
         let day = tmpCalendar.component(.day, from: date)
-        return (year,month,day)
+        return (year, month, day)
     }
     
-    func getWeekIdx(_ date: Date) -> Int{
+    func getWeekIdx(_ date: Date) -> Int {
         let tmpCalendar = Calendar(identifier: .gregorian)
         return tmpCalendar.component(.weekday, from: date)
-    }
-    
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        if self.judgeHoliday(date){
-            return UIColor.red
-        }
-        let weekday = self.getWeekIdx(date)
-        if weekday == 1 {
-            return UIColor.red
-        }
-        else if weekday == 7 {
-            return UIColor.blue
-        }
-        return nil
     }
     
     private func getWeatherDate() {
@@ -102,5 +83,20 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
                 print(error)
             }
         }
+    }
+}
+
+extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        if self.judgeHoliday(date) { return .red }
+        let weekday = self.getWeekIdx(date)
+        if weekday == 1 { return .red }
+        if weekday == 7 { return .blue }
+        return nil
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let selectDay = getDay(date)
+        print(":large_green_square:\(selectDay)")
     }
 }
