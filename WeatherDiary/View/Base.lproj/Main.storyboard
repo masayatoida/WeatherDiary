@@ -30,10 +30,18 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SM9-xw-kvd">
-                                <rect key="frame" x="148" y="652" width="101" height="31"/>
+                                <rect key="frame" x="260" y="624" width="90" height="94"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="➕">
+                                            <attributes>
+                                                <font key="NSFont" size="47" name="AppleColorEmoji"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="didTapToCreateDiary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pSs-oN-gHv"/>
                                 </connections>
