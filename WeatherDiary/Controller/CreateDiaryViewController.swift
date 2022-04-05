@@ -37,7 +37,11 @@ class CreateDiaryViewController: UIViewController {
             showAlert()
             return
         }
-        getWeatherDate(latitude: latitudeNow, longitude: longitudeNow)
+        
+        let calendar = Calendar(identifier: .gregorian)
+        if calendar.isDateInToday(date) {
+            getWeatherDate(latitude: latitudeNow, longitude: longitudeNow)
+        }
     }
     
     @IBAction func didTapSave(_ sender: UIButton) {
