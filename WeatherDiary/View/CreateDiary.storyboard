@@ -52,7 +52,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="eventTextfield" destination="ej3-Dk-YjK" id="j63-RN-Rze"/>
+                        <outlet property="eventTextField" destination="ej3-Dk-YjK" id="j63-RN-Rze"/>
                         <outlet property="weatherLabel" destination="qgX-fO-bN3" id="y9V-PJ-W9f"/>
                     </connections>
                 </viewController>

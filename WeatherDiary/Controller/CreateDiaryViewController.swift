@@ -10,7 +10,7 @@ import SwiftyJSON
 import Alamofire
 
 class CreateDiaryViewController: UIViewController {
-    @IBOutlet private weak var eventTextfield: UITextField!
+    @IBOutlet private weak var eventTextField: UITextField!
     @IBOutlet private weak var weatherLabel: UILabel!
     
     private let diaryData = DiaryData()
@@ -57,7 +57,7 @@ class CreateDiaryViewController: UIViewController {
     private func saveDate() {
         let df = DateFormatter()
         df.dateFormat = "yyyy/MM/dd"
-        diaryData.saveData(date: df.string(from: date), event: eventTextfield.text ?? "")
+        diaryData.saveData(date: df.string(from: date), event: eventTextField.text ?? "")
         diaryData.allData()
     }
     
