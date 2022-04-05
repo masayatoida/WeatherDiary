@@ -9,8 +9,6 @@ import UIKit
 import FSCalendar
 import CalculateCalendarLogic
 import RealmSwift
-import SwiftyJSON
-import Alamofire
 
 class ShowCalenderViewController: UIViewController {
     @IBOutlet weak var calendar: FSCalendar!
@@ -24,7 +22,6 @@ class ShowCalenderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getWeatherDate()
         self.calendar.dataSource = self
         self.calendar.delegate = self
     }
@@ -55,34 +52,6 @@ class ShowCalenderViewController: UIViewController {
     func getWeekIdx(_ date: Date) -> Int {
         let tmpCalendar = Calendar(identifier: .gregorian)
         return tmpCalendar.component(.weekday, from: date)
-    }
-    
-    private func getWeatherDate() {
-        // TODO: - リリース前に自分用のAPIキーを取得する
-        let myAPIKey = "55b317379a06a94f5198e9c297ff0b0e"
-        let latitude = 35.729135166247495
-        let longitude = 139.71308509292876
-        let text = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&units=metric&appid=\(myAPIKey)"
-        let url = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        AF.request(url!, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON { response in
-            switch response.result {
-            case .success:
-                let json = JSON(response.data as Any)
-                let descriptionWeather = json["weather"][0]["main"].string!
-                switch descriptionWeather {
-                case "Clouds":
-                    self.navigationItem.title = "曇り"
-                case "Rain":
-                    self.navigationItem.title = "雨"
-                case "Snow":
-                    self.navigationItem.title = "雪"
-                default:
-                    self.navigationItem.title = "晴れ"
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
     }
 }
 

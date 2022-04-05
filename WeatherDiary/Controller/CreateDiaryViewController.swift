@@ -7,10 +7,14 @@
 
 import UIKit
 import CoreLocation
+import SwiftyJSON
+import Alamofire
+
 
 class CreateDiaryViewController: UIViewController {
     
     @IBOutlet private weak var eventTextfield: UITextField!
+    @IBOutlet weak var weatherLabel: UILabel!
     
     var locationManager: CLLocationManager!
     // 緯度
@@ -31,26 +35,13 @@ class CreateDiaryViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         let manager = CLLocationManager()
-        switch manager.authorizationStatus {
-        case .restricted:
-            print("OK")
-            print(latitudeNow)
-            print(longitudeNow)
-        case .authorizedWhenInUse:
-            print("ALLOK")
-            print(latitudeNow)
-            print(longitudeNow)
-        case .authorizedAlways:
-            print("ALWAYSOK")
-            print(latitudeNow)
-            print(longitudeNow)
-        case .denied:
-            print("NG")
+        if manager.authorizationStatus == .denied {
             showAlert()
-        default:
-            print("error")
-            showAlert()
+            return
         }
+        getWeatherDate(latitude: latitudeNow, longitude: longitudeNow)
+        print(latitudeNow)
+        print(longitudeNow)
     }
     
     @IBAction func didTapSave(_ sender: UIButton) {
@@ -105,6 +96,33 @@ class CreateDiaryViewController: UIViewController {
         alert.addAction(defaultAction)
         // Alertを表示
         present(alert, animated: true, completion: nil)
+    }
+    
+    private func getWeatherDate(latitude: String, longitude: String) {
+        // TODO: - リリース前に自分用のAPIキーを取得する
+        let myAPIKey = "55b317379a06a94f5198e9c297ff0b0e"
+        let text = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&units=metric&appid=\(myAPIKey)"
+        let url = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        AF.request(url!, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON { response in
+            switch response.result {
+            case .success:
+                let json = JSON(response.data as Any)
+                print(json)
+                guard let descriptionWeather = json["weather"][0]["main"].string else { return }
+                switch descriptionWeather {
+                case "Clouds":
+                    self.weatherLabel.text = "曇り"
+                case "Rain":
+                    self.weatherLabel.text = "雨"
+                case "Snow":
+                    self.weatherLabel.text = "雪"
+                default:
+                    self.weatherLabel.text = "晴れ"
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 
