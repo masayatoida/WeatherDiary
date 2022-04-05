@@ -12,7 +12,7 @@ import RealmSwift
 
 class ShowCalenderViewController: UIViewController {
     @IBOutlet weak var calendar: FSCalendar!
-    
+    private var selectDate = Date()
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -29,6 +29,7 @@ class ShowCalenderViewController: UIViewController {
     @IBAction func didTapToCreateDiary(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "CreateDiary", bundle: nil)
         let createDiaryVC = storyboard.instantiateViewController(withIdentifier: "CreateDiary") as! CreateDiaryViewController
+        createDiaryVC.date = selectDate
         self.navigationController?.pushViewController(createDiaryVC, animated: true)
     }
     
@@ -65,7 +66,6 @@ extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, 
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let selectDay = getDay(date)
-        print(":large_green_square:\(selectDay)")
+        selectDate = date
     }
 }

@@ -19,9 +19,9 @@ class CreateDiaryViewController: UIViewController {
     private var latitudeNow = ""
     // 経度
     private var longitudeNow = ""
-    private let date = Date()
     private let diaryData = DiaryData()
-    
+    var date = Date()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let df =  DateFormatter()
