@@ -10,8 +10,10 @@ import SwiftyJSON
 import Alamofire
 
 class CreateDiaryViewController: UIViewController {
-    @IBOutlet private weak var eventTextField: UITextField!
     @IBOutlet private weak var weatherLabel: UILabel!
+    @IBOutlet weak var weatherView: UIView!
+    @IBOutlet weak var editDiaryTextView: UITextView!
+    @IBOutlet weak var saveButton: UIButton!
     
     private let diaryData = DiaryData()
     private let locationManager = LocationManager()
@@ -25,6 +27,11 @@ class CreateDiaryViewController: UIViewController {
         navigationItem.title = df.string(from: date)
         diaryData.allData()
         locationManager.setupLocationManager()
+        editDiaryTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        editDiaryTextView.layer.cornerRadius = 10
+        editDiaryTextView.sizeToFit()
+        weatherView.layer.cornerRadius = 10
+        saveButton.layer.cornerRadius = 10
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,9 +49,6 @@ class CreateDiaryViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func didTapDelete(_ sender: UIButton) {
-    }
-    
     private func showAlert() {
         let alertTitle = "位置情報取得が許可されていません。"
         let alertMessage = "設定アプリの「プライバシー > 位置情報サービス」から変更してください。"
@@ -57,7 +61,7 @@ class CreateDiaryViewController: UIViewController {
     private func saveDate() {
         let df = DateFormatter()
         df.dateFormat = "yyyy/MM/dd"
-        diaryData.saveData(date: df.string(from: date), event: eventTextField.text ?? "")
+        diaryData.saveData(date: df.string(from: date), event: editDiaryTextView.text ?? "")
         diaryData.allData()
     }
     
