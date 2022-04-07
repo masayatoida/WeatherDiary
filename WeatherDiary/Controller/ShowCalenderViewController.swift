@@ -12,6 +12,8 @@ import RealmSwift
 
 class ShowCalenderViewController: UIViewController {
     @IBOutlet weak var calendar: FSCalendar!
+    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var diaryTextView: UITextView!
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var dateFormatter: DateFormatter = {
@@ -28,6 +30,10 @@ class ShowCalenderViewController: UIViewController {
         locationManager.setupLocationManager()
         self.calendar.dataSource = self
         self.calendar.delegate = self
+        plusButton.layer.cornerRadius = 30
+        diaryTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        diaryTextView.layer.cornerRadius = 10
+        diaryTextView.sizeToFit()
     }
     
     @IBAction func didTapToCreateDiary(_ sender: UIButton) {
