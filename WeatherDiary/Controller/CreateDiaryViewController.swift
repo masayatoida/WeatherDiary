@@ -17,14 +17,17 @@ class CreateDiaryViewController: UIViewController {
     
     private let diaryData = DiaryData()
     private let locationManager = LocationManager()
+    private let weatherManager = WeatherManager()
     
     var date = Date()
     
+    func sampleFunc() {
+        print("sampleFunc")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let df = DateFormatter()
-        df.dateFormat = "yyyy/MM/dd"
-        navigationItem.title = df.string(from: date)
+        navigationItem.title = date.string(format: "yyyy/MM/dd")
         diaryData.allData()
         locationManager.setupLocationManager()
         editDiaryTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -40,7 +43,24 @@ class CreateDiaryViewController: UIViewController {
         }
         let calendar = Calendar(identifier: .gregorian)
         if calendar.isDateInToday(date) {
-            getWeatherDate(latitude: locationManager.latitudeNow, longitude: locationManager.longitudeNow)
+            weatherManager.getWeatherDate(latitude: locationManager.latitudeNow, longitude: locationManager.longitudeNow) { result in
+                switch result {
+                case .success(let descriptionWeather):
+                    switch descriptionWeather {
+                    case "Clouds":
+                        self.weatherLabel.text = "曇り"
+                    case "Rain":
+                        self.weatherLabel.text = "雨"
+                    case "Snow":
+                        self.weatherLabel.text = "雪"
+                    default:
+                        self.weatherLabel.text = "晴れ"
+                    }
+                case .failure(let failure):
+                    #warning("エラー処理を記述")
+                    break
+                }
+            }
         }
     }
     
@@ -63,32 +83,5 @@ class CreateDiaryViewController: UIViewController {
         df.dateFormat = "yyyy/MM/dd"
         diaryData.saveData(date: df.string(from: date), event: editDiaryTextView.text ?? "")
         diaryData.allData()
-    }
-    
-    private func getWeatherDate(latitude: String, longitude: String) {
-        // TODO: - リリース前に自分用のAPIキーを取得する
-        let myAPIKey = "55b317379a06a94f5198e9c297ff0b0e"
-        let urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&units=metric&appid=\(myAPIKey)"
-        let url = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        AF.request(url!, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON { response in
-            switch response.result {
-            case .success:
-                let json = JSON(response.data as Any)
-                print(json)
-                guard let descriptionWeather = json["weather"][0]["main"].string else { return }
-                switch descriptionWeather {
-                case "Clouds":
-                    self.weatherLabel.text = "曇り"
-                case "Rain":
-                    self.weatherLabel.text = "雨"
-                case "Snow":
-                    self.weatherLabel.text = "雪"
-                default:
-                    self.weatherLabel.text = "晴れ"
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
     }
 }

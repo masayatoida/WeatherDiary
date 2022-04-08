@@ -22,6 +22,8 @@
 		00EDAF8B27CC690800CA8D35 /* CreateDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EDAF8A27CC690800CA8D35 /* CreateDiaryViewController.swift */; };
 		00EDAF8D27CC692000CA8D35 /* DetailDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EDAF8C27CC692000CA8D35 /* DetailDiaryViewController.swift */; };
 		15BD77A8677FC7605050D0F5 /* Pods_WeatherDiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72BA25746941B858E3EA6BF2 /* Pods_WeatherDiaryTests.framework */; };
+		2923425A28004A85003C24CA /* Date+WeatherDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2923425928004A85003C24CA /* Date+WeatherDiary.swift */; };
+		2923425C28004B56003C24CA /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2923425B28004B56003C24CA /* WeatherManager.swift */; };
 		9842E95E848B211775118103 /* Pods_WeatherDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC044DE36BA312E0710D9703 /* Pods_WeatherDiary.framework */; };
 		DCC5E787704E50D5291FB4CF /* Pods_WeatherDiary_WeatherDiaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0313181DB0FA0827C158D371 /* Pods_WeatherDiary_WeatherDiaryUITests.framework */; };
 /* End PBXBuildFile section */
@@ -64,6 +66,8 @@
 		00EDAF8C27CC692000CA8D35 /* DetailDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDiaryViewController.swift; sourceTree = "<group>"; };
 		0313181DB0FA0827C158D371 /* Pods_WeatherDiary_WeatherDiaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherDiary_WeatherDiaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		17F95629043DFA595EC81279 /* Pods-WeatherDiary-WeatherDiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherDiary-WeatherDiaryUITests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherDiary-WeatherDiaryUITests/Pods-WeatherDiary-WeatherDiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2923425928004A85003C24CA /* Date+WeatherDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+WeatherDiary.swift"; sourceTree = "<group>"; };
+		2923425B28004B56003C24CA /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		2962D60CB2B3573008ACC9E7 /* Pods-WeatherDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherDiaryTests/Pods-WeatherDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4DFED92D05D863EADF2EA411 /* Pods-WeatherDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherDiary.debug.xcconfig"; path = "Target Support Files/Pods-WeatherDiary/Pods-WeatherDiary.debug.xcconfig"; sourceTree = "<group>"; };
 		70D722E46370CB0F32B74029 /* Pods-WeatherDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherDiary.release.xcconfig"; path = "Target Support Files/Pods-WeatherDiary/Pods-WeatherDiary.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 			children = (
 				00DBC9F727F67C34001359CF /* DiaryData.swift */,
 				00AC1F5B27FC7B7F00F73F51 /* LocationManager.swift */,
+				2923425B28004B56003C24CA /* WeatherManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -127,13 +132,6 @@
 				00DBC9F527F4420E001359CF /* CreateDiary.storyboard */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		009EAFA727F422F700569B23 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		00EDAF4A27CC5D9300CA8D35 = {
@@ -161,10 +159,10 @@
 		00EDAF5527CC5D9300CA8D35 /* WeatherDiary */ = {
 			isa = PBXGroup;
 			children = (
+				2923425828004A44003C24CA /* Extension */,
 				009EAFA627F422EB00569B23 /* View */,
 				002B27EE27CC697B005C13BD /* Model */,
 				002B27EF27CC698A005C13BD /* Controller */,
-				009EAFA727F422F700569B23 /* Extensions */,
 				00EDAF5627CC5D9300CA8D35 /* AppDelegate.swift */,
 				00EDAF5827CC5D9400CA8D35 /* SceneDelegate.swift */,
 				00EDAF6127CC5D9500CA8D35 /* LaunchScreen.storyboard */,
@@ -189,6 +187,14 @@
 				00EDAF7927CC5D9500CA8D35 /* WeatherDiaryUITestsLaunchTests.swift */,
 			);
 			path = WeatherDiaryUITests;
+			sourceTree = "<group>";
+		};
+		2923425828004A44003C24CA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2923425928004A85003C24CA /* Date+WeatherDiary.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		80BB12D96EDFA524F3FD270C /* Pods */ = {
@@ -458,7 +464,9 @@
 				00EDAF5727CC5D9300CA8D35 /* AppDelegate.swift in Sources */,
 				00EDAF8827CC68CE00CA8D35 /* ShowCalenderViewController.swift in Sources */,
 				00AC1F5C27FC7B7F00F73F51 /* LocationManager.swift in Sources */,
+				2923425A28004A85003C24CA /* Date+WeatherDiary.swift in Sources */,
 				00DBC9F827F67C34001359CF /* DiaryData.swift in Sources */,
+				2923425C28004B56003C24CA /* WeatherManager.swift in Sources */,
 				00EDAF5927CC5D9400CA8D35 /* SceneDelegate.swift in Sources */,
 				00EDAF8D27CC692000CA8D35 /* DetailDiaryViewController.swift in Sources */,
 			);
