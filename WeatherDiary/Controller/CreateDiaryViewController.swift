@@ -14,6 +14,7 @@ class CreateDiaryViewController: UIViewController {
     @IBOutlet weak var weatherView: UIView!
     @IBOutlet weak var editDiaryTextView: UITextView!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var weatherImageView: UIImageView!
     
     private let diaryData = DiaryData()
     private let locationManager = LocationManager()
@@ -76,6 +77,7 @@ class CreateDiaryViewController: UIViewController {
                 let json = JSON(response.data as Any)
                 print(json)
                 guard let descriptionWeather = json["weather"][0]["main"].string else { return }
+                self.weatherImageView.image = UIImage(named: descriptionWeather)
                 switch descriptionWeather {
                 case "Clouds":
                     self.weatherLabel.text = "曇り"
@@ -83,6 +85,8 @@ class CreateDiaryViewController: UIViewController {
                     self.weatherLabel.text = "雨"
                 case "Snow":
                     self.weatherLabel.text = "雪"
+                case "Clear":
+                    self.weatherLabel.text = "晴れ"
                 default:
                     self.weatherLabel.text = "晴れ"
                 }

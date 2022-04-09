@@ -41,7 +41,7 @@
                                             <constraint firstAttribute="width" constant="60" id="tm8-L9-Kab"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="48"/>
-                                        <color key="tintColor" name="MainColor2"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="plus" catalog="system">
                                             <color key="titleColor" name="MainColor2"/>
