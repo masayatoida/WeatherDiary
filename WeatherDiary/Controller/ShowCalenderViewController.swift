@@ -11,9 +11,9 @@ import CalculateCalendarLogic
 import RealmSwift
 
 class ShowCalenderViewController: UIViewController {
-    @IBOutlet weak var calendar: FSCalendar!
-    @IBOutlet weak var plusButton: UIButton!
-    @IBOutlet weak var diaryTextView: UITextView!
+    @IBOutlet private weak var calendar: FSCalendar!
+    @IBOutlet private weak var plusButton: UIButton!
+    @IBOutlet private weak var diaryTextView: UITextView!
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var dateFormatter: DateFormatter = {
@@ -34,6 +34,15 @@ class ShowCalenderViewController: UIViewController {
         diaryTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         diaryTextView.layer.cornerRadius = 10
         diaryTextView.sizeToFit()
+        plusButton.layer.cornerRadius = 10
+                // 影の濃さ
+        plusButton.layer.shadowOpacity = 0.3
+                // 影のぼかしの大きさ
+        plusButton.layer.shadowRadius = 3
+                // 影の色
+        plusButton.layer.shadowColor = UIColor.blue.cgColor
+                // 影の方向（width=右方向、height=下方向）
+        plusButton.layer.shadowOffset = CGSize(width: 5, height: 5)
     }
     
     @IBAction func didTapToCreateDiary(_ sender: UIButton) {

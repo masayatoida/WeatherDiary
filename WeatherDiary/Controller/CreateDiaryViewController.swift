@@ -11,14 +11,14 @@ import Alamofire
 
 class CreateDiaryViewController: UIViewController {
     @IBOutlet private weak var weatherLabel: UILabel!
-    @IBOutlet weak var weatherView: UIView!
-    @IBOutlet weak var editDiaryTextView: UITextView!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet private weak var weatherView: UIView!
+    @IBOutlet private weak var editDiaryTextView: UITextView!
+    @IBOutlet private weak var saveButton: UIButton!
     
     private let diaryData = DiaryData()
     private let locationManager = LocationManager()
     private let weatherManager = WeatherManager()
-    
+
     var date = Date()
     
     func sampleFunc() {
@@ -35,6 +35,7 @@ class CreateDiaryViewController: UIViewController {
         editDiaryTextView.sizeToFit()
         weatherView.layer.cornerRadius = 10
         saveButton.layer.cornerRadius = 10
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "戻る", style: .plain, target: nil, action: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
