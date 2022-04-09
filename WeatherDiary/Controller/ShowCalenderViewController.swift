@@ -1,37 +1,19 @@
 //
-//  ShowCalenderViewController.swift
-//  WeatherDiary
+// ShowCalenderViewController.swift
+// WeatherDiary
 //
-//  Created by 戸井田莉江 on 2022/02/28.
+// Created by 戸井田莉江 on 2022/02/28.
 // 参考: - https://qiita.com/yuki1023/items/9f3416ac3c687fa31a52
 
 import UIKit
 import FSCalendar
 import CalculateCalendarLogic
 import RealmSwift
-import SwiftyJSON
-import Alamofire
 
-class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance{
-    
+class ShowCalenderViewController: UIViewController {
     @IBOutlet weak var calendar: FSCalendar!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        getWeatherDate()
-        self.calendar.dataSource = self
-        self.calendar.delegate = self
-    }
-    
-    @IBAction func didTapToCreateDiary(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "CreateDiary", bundle: nil)
-        let createDiaryVC = storyboard.instantiateViewController(withIdentifier: "CreateDiary") as! CreateDiaryViewController
-        self.navigationController?.pushViewController(createDiaryVC, animated: true)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var diaryTextView: UITextView!
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var dateFormatter: DateFormatter = {
@@ -40,7 +22,28 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         return formatter
     }()
     
-    func judgeHoliday(_ date : Date) -> Bool {
+    private var selectDate = Date()
+    private let locationManager = LocationManager()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        locationManager.setupLocationManager()
+        self.calendar.dataSource = self
+        self.calendar.delegate = self
+        plusButton.layer.cornerRadius = 30
+        diaryTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        diaryTextView.layer.cornerRadius = 10
+        diaryTextView.sizeToFit()
+    }
+    
+    @IBAction func didTapToCreateDiary(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "CreateDiary", bundle: nil)
+        let createDiaryVC = storyboard.instantiateViewController(withIdentifier: "CreateDiary") as! CreateDiaryViewController
+        createDiaryVC.date = selectDate
+        self.navigationController?.pushViewController(createDiaryVC, animated: true)
+    }
+    
+    func judgeHoliday(_ date: Date) -> Bool {
         let tmpCalendar = Calendar(identifier: .gregorian)
         let year = tmpCalendar.component(.year, from: date)
         let month = tmpCalendar.component(.month, from: date)
@@ -49,58 +52,30 @@ class ViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,F
         return holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
     }
     
-    func getDay(_ date:Date) -> (Int,Int,Int){
+    func getDay(_ date: Date) -> (Int, Int, Int) {
         let tmpCalendar = Calendar(identifier: .gregorian)
         let year = tmpCalendar.component(.year, from: date)
         let month = tmpCalendar.component(.month, from: date)
         let day = tmpCalendar.component(.day, from: date)
-        return (year,month,day)
+        return (year, month, day)
     }
     
-    func getWeekIdx(_ date: Date) -> Int{
+    func getWeekIdx(_ date: Date) -> Int {
         let tmpCalendar = Calendar(identifier: .gregorian)
         return tmpCalendar.component(.weekday, from: date)
     }
-    
+}
+
+extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        if self.judgeHoliday(date){
-            return UIColor.red
-        }
+        if self.judgeHoliday(date) { return .red }
         let weekday = self.getWeekIdx(date)
-        if weekday == 1 {
-            return UIColor.red
-        }
-        else if weekday == 7 {
-            return UIColor.blue
-        }
+        if weekday == 1 { return .red }
+        if weekday == 7 { return .blue }
         return nil
     }
     
-    private func getWeatherDate() {
-        // TODO: - リリース前に自分用のAPIキーを取得する
-        let myAPIKey = "55b317379a06a94f5198e9c297ff0b0e"
-        let latitude = 35.729135166247495
-        let longitude = 139.71308509292876
-        let text = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&units=metric&appid=\(myAPIKey)"
-        let url = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        AF.request(url!, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON { response in
-            switch response.result {
-            case .success:
-                let json = JSON(response.data as Any)
-                let descriptionWeather = json["weather"][0]["main"].string!
-                switch descriptionWeather {
-                case "Clouds":
-                    self.navigationItem.title = "曇り"
-                case "Rain":
-                    self.navigationItem.title = "雨"
-                case "Snow":
-                    self.navigationItem.title = "雪"
-                default:
-                    self.navigationItem.title = "晴れ"
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        selectDate = date
     }
 }
