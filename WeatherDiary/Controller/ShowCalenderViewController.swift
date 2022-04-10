@@ -24,7 +24,8 @@ class ShowCalenderViewController: UIViewController {
     
     private var selectDate = Date()
     private let locationManager = LocationManager()
-    
+    private let diaryData = DiaryData()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.setupLocationManager()
@@ -50,6 +51,7 @@ class ShowCalenderViewController: UIViewController {
         plusButton.layer.shadowColor = UIColor.black.cgColor
         plusButton.layer.shadowOffset = CGSize(width: 3, height: 3)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "戻る", style: .plain, target: nil, action: nil)
+        diaryTextView.text = diaryData.getEventData(selectDate: selectDate)
     }
 }
 
@@ -64,6 +66,7 @@ extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, 
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectDate = date
+        diaryTextView.text = diaryData.getEventData(selectDate: selectDate)
     }
     
     private func judgeHoliday(_ date: Date) -> Bool {

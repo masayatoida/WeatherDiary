@@ -29,4 +29,12 @@ extension DiaryData {
         let diaryData = realm.objects(DiaryData.self)
         print(diaryData)
     }
+    
+    func getEventData(selectDate: Date) -> String {
+        let realm = try! Realm()
+        let diaryData = realm.objects(DiaryData.self)
+        let selectDateDiaryData = diaryData.filter("date == %@", selectDate.string(format: "yyyy/MM/dd"))
+        let selectDateEvent = selectDateDiaryData.first?.event
+        return selectDateEvent ?? ""
+    }
 }
