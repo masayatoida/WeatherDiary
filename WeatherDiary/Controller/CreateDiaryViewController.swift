@@ -47,6 +47,7 @@ class CreateDiaryViewController: UIViewController {
         editDiaryTextView.sizeToFit()
         weatherView.layer.cornerRadius = 10
         saveButton.layer.cornerRadius = 10
+        editDiaryTextView.text = diaryData.getEventData(selectDate: date)
     }
     
     private func showAlert() {
@@ -83,9 +84,11 @@ class CreateDiaryViewController: UIViewController {
     }
     
     private func saveDate() {
-        let df = DateFormatter()
-        df.dateFormat = "yyyy/MM/dd"
-        diaryData.saveData(date: df.string(from: date), event: editDiaryTextView.text ?? "")
+        if diaryData.getEventData(selectDate: date) == "" {
+            diaryData.saveData(date: date.string(format: "yyyy/MM/dd"), event: editDiaryTextView.text ?? "")
+        } else {
+            diaryData.updateData(selectDate: date, event: editDiaryTextView.text)
+        }
         diaryData.allData()
     }
 }
