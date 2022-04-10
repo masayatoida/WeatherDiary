@@ -18,7 +18,7 @@ class CreateDiaryViewController: UIViewController {
     private let diaryData = DiaryData()
     private let locationManager = LocationManager()
     private let weatherManager = WeatherManager()
-
+    
     var date = Date()
     
     func sampleFunc() {
@@ -35,7 +35,6 @@ class CreateDiaryViewController: UIViewController {
         editDiaryTextView.sizeToFit()
         weatherView.layer.cornerRadius = 10
         saveButton.layer.cornerRadius = 10
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "戻る", style: .plain, target: nil, action: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,7 +57,7 @@ class CreateDiaryViewController: UIViewController {
                         self.weatherLabel.text = "晴れ"
                     }
                 case .failure(let failure):
-                    #warning("エラー処理を記述")
+#warning("エラー処理を記述")
                     break
                 }
             }

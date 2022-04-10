@@ -35,14 +35,11 @@ class ShowCalenderViewController: UIViewController {
         diaryTextView.layer.cornerRadius = 10
         diaryTextView.sizeToFit()
         plusButton.layer.cornerRadius = 10
-                // 影の濃さ
-        plusButton.layer.shadowOpacity = 0.3
-                // 影のぼかしの大きさ
+        plusButton.layer.shadowOpacity = 0.1
         plusButton.layer.shadowRadius = 3
-                // 影の色
-        plusButton.layer.shadowColor = UIColor.blue.cgColor
-                // 影の方向（width=右方向、height=下方向）
-        plusButton.layer.shadowOffset = CGSize(width: 5, height: 5)
+        plusButton.layer.shadowColor = UIColor.black.cgColor
+        plusButton.layer.shadowOffset = CGSize(width: 3, height: 3)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "戻る", style: .plain, target: nil, action: nil)
     }
     
     @IBAction func didTapToCreateDiary(_ sender: UIButton) {
@@ -58,7 +55,7 @@ class ShowCalenderViewController: UIViewController {
         let month = tmpCalendar.component(.month, from: date)
         let day = tmpCalendar.component(.day, from: date)
         let holiday = CalculateCalendarLogic()
-        return holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
+        return holiday.judgeJapaneseHoli¡day(year: year, month: month, day: day)
     }
     
     func getDay(_ date: Date) -> (Int, Int, Int) {
