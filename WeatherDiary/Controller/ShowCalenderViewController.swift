@@ -28,18 +28,7 @@ class ShowCalenderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.setupLocationManager()
-        self.calendar.dataSource = self
-        self.calendar.delegate = self
-        plusButton.layer.cornerRadius = 30
-        diaryTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        diaryTextView.layer.cornerRadius = 10
-        diaryTextView.sizeToFit()
-        plusButton.layer.cornerRadius = 10
-        plusButton.layer.shadowOpacity = 0.1
-        plusButton.layer.shadowRadius = 3
-        plusButton.layer.shadowColor = UIColor.black.cgColor
-        plusButton.layer.shadowOffset = CGSize(width: 3, height: 3)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "戻る", style: .plain, target: nil, action: nil)
+        setupView()
     }
     
     @IBAction func didTapToCreateDiary(_ sender: UIButton) {
@@ -49,26 +38,18 @@ class ShowCalenderViewController: UIViewController {
         self.navigationController?.pushViewController(createDiaryVC, animated: true)
     }
     
-    func judgeHoliday(_ date: Date) -> Bool {
-        let tmpCalendar = Calendar(identifier: .gregorian)
-        let year = tmpCalendar.component(.year, from: date)
-        let month = tmpCalendar.component(.month, from: date)
-        let day = tmpCalendar.component(.day, from: date)
-        let holiday = CalculateCalendarLogic()
-        return holiday.judgeJapaneseHoli¡day(year: year, month: month, day: day)
-    }
-    
-    func getDay(_ date: Date) -> (Int, Int, Int) {
-        let tmpCalendar = Calendar(identifier: .gregorian)
-        let year = tmpCalendar.component(.year, from: date)
-        let month = tmpCalendar.component(.month, from: date)
-        let day = tmpCalendar.component(.day, from: date)
-        return (year, month, day)
-    }
-    
-    func getWeekIdx(_ date: Date) -> Int {
-        let tmpCalendar = Calendar(identifier: .gregorian)
-        return tmpCalendar.component(.weekday, from: date)
+    private func setupView() {
+        self.calendar.dataSource = self
+        self.calendar.delegate = self
+        diaryTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        diaryTextView.layer.cornerRadius = 10
+        diaryTextView.sizeToFit()
+        plusButton.layer.cornerRadius = plusButton.bounds.width/2
+        plusButton.layer.shadowOpacity = 0.1
+        plusButton.layer.shadowRadius = 3
+        plusButton.layer.shadowColor = UIColor.black.cgColor
+        plusButton.layer.shadowOffset = CGSize(width: 3, height: 3)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "戻る", style: .plain, target: nil, action: nil)
     }
 }
 
@@ -83,5 +64,19 @@ extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, 
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectDate = date
+    }
+    
+    private func judgeHoliday(_ date: Date) -> Bool {
+        let tmpCalendar = Calendar(identifier: .gregorian)
+        let year = tmpCalendar.component(.year, from: date)
+        let month = tmpCalendar.component(.month, from: date)
+        let day = tmpCalendar.component(.day, from: date)
+        let holiday = CalculateCalendarLogic()
+        return holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
+    }
+    
+    private func getWeekIdx(_ date: Date) -> Int {
+        let tmpCalendar = Calendar(identifier: .gregorian)
+        return tmpCalendar.component(.weekday, from: date)
     }
 }

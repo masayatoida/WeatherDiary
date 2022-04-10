@@ -13,7 +13,7 @@ class DiaryData: Object {
     @objc dynamic var event = ""
 }
 
-extension DiaryData{
+extension DiaryData {
     func saveData(date: String, event: String){
         let realm = try! Realm()
         let diaryData = DiaryData()
