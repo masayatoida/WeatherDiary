@@ -2,7 +2,7 @@
 //  WeatherManager.swift
 //  WeatherDiary
 //
-//  Created by 吉澤翔吾 on 2022/04/08.
+//  Created by 戸井田莉江 on 2022/04/08.
 //
 
 import Foundation

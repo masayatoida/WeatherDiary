@@ -25,7 +25,7 @@ class ShowCalenderViewController: UIViewController {
     private var selectDate = Date()
     private let locationManager = LocationManager()
     private let diaryData = DiaryData()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.setupLocationManager()

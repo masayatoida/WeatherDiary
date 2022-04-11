@@ -84,7 +84,6 @@ class CreateDiaryViewController: UIViewController {
     }
     
     private func saveDate() {
-        //TODO: あまり良くない実装
         if editDiaryTextView.text == "" { return }
         if diaryData.getEventData(selectDate: date) == "" {
             diaryData.saveData(date: date.string(format: "yyyy/MM/dd"), event: editDiaryTextView.text ?? "")
