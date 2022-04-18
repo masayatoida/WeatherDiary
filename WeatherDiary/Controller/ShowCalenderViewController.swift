@@ -66,6 +66,13 @@ extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, 
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectDate = date
+        if selectDate > Date() {
+            diaryTextView.isHidden = true
+            plusButton.isHidden = true
+        } else {
+            diaryTextView.isHidden = false
+            plusButton.isHidden = false
+        }
         diaryTextView.text = diaryData.getEventData(selectDate: selectDate)
     }
     

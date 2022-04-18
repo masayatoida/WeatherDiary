@@ -30,6 +30,12 @@ class CreateDiaryViewController: UIViewController {
         if !locationManager.isPermission() {
             showAlert()
         }
+//        if selectDate == Date() {
+//            getWeatherInfo()
+//        }
+        //    もし、選択した日付が、今日だったら {
+        //     getWeatherInfo()
+        //    }
         getWeatherInfo()
     }
     

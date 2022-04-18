@@ -21,6 +21,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     func setupLocationManager() {
         locationManager = CLLocationManager()
         guard let locationManager = locationManager else { return }
+        //locationManagerに値があれば代入されなければこの先のブロックはよばれない？
         locationManager.requestWhenInUseAuthorization()
         let manager = CLLocationManager()
         if manager.authorizationStatus == .authorizedWhenInUse {
