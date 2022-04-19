@@ -36,9 +36,14 @@ class CreateDiaryViewController: UIViewController {
             getWeatherInfo()
         }
     }
+    
     @IBAction func didTapSave(_ sender: UIButton) {
         saveDate()
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func didTapDeleteButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     private func setupView() {

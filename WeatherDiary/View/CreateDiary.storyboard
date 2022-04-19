@@ -123,7 +123,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5Co-bF-Y78">
-                        <barButtonItem key="rightBarButtonItem" image="trash" catalog="system" id="xOl-wv-N3t"/>
+                        <barButtonItem key="rightBarButtonItem" image="trash" catalog="system" id="xOl-wv-N3t">
+                            <connections>
+                                <action selector="didTapDeleteButton:" destination="Y6W-OH-hqX" id="PZO-G9-O2Q"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="editDiaryTextView" destination="FvZ-57-rG8" id="WFs-ZX-Xga"/>
