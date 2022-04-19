@@ -24,18 +24,26 @@ class CreateDiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        weatherView.isHidden = Calendar.current.isDateInToday(date) ? false : true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if !locationManager.isPermission() {
             showAlert()
         }
-        getWeatherInfo()
+        
+        if Calendar.current.isDateInToday(date) {
+            getWeatherInfo()
+        }
     }
     
     @IBAction func didTapSave(_ sender: UIButton) {
         saveDate()
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func didTapDeleteButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     private func setupView() {
