@@ -37,7 +37,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9Jo-Nk-eal">
                                         <rect key="frame" x="124.5" y="25" width="224.5" height="99.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CreateDiary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgX-fO-bN3">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgX-fO-bN3">
                                                 <rect key="frame" x="0.0" y="0.0" width="224.5" height="26.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
@@ -131,7 +131,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="editDiaryTextView" destination="FvZ-57-rG8" id="WFs-ZX-Xga"/>
+                        <outlet property="maxTemp" destination="APo-KM-V32" id="6oU-8U-Dhg"/>
+                        <outlet property="minimumTemp" destination="MNp-Nv-HgG" id="97Y-g7-V6i"/>
+                        <outlet property="rainyPercent" destination="q92-ox-pXH" id="Vra-QR-GIq"/>
                         <outlet property="saveButton" destination="Lad-UU-yix" id="Alk-jb-LPZ"/>
+                        <outlet property="weatherIcon" destination="9mY-xa-Jmp" id="Jjw-X0-Rmc"/>
                         <outlet property="weatherLabel" destination="qgX-fO-bN3" id="y9V-PJ-W9f"/>
                         <outlet property="weatherView" destination="6mi-6K-jtV" id="hCK-b1-zCY"/>
                     </connections>

@@ -15,6 +15,7 @@ class ShowCalenderViewController: UIViewController {
     @IBOutlet private weak var plusButton: UIButton!
     @IBOutlet private weak var diaryTextView: UITextView!
     
+    //カレンダーフォーマットに関する記述
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -22,23 +23,24 @@ class ShowCalenderViewController: UIViewController {
         return formatter
     }()
     
-    private var selectDate = Date()
-    private let locationManager = LocationManager()
+    private var selectDate = Date()//selectDateに今日の日付を入れた
+    private let locationManager = LocationManager()//LocationManager()はmodelファイル全体という意味?別ファイルでも入れられる？
     private let diaryData = DiaryData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.setupLocationManager()
-        setupView()
+        locationManager.setupLocationManager()//LocationManagerのsetupLocationManagerという関数を呼ぶ
+        setupView()//２つ下のブロックsetupViewを呼ぶ
     }
-    
+    //画面遷移のブロック
     @IBAction func didTapToCreateDiary(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "CreateDiary", bundle: nil)
         let createDiaryVC = storyboard.instantiateViewController(withIdentifier: "CreateDiary") as! CreateDiaryViewController
-        createDiaryVC.date = selectDate
+        // selectDateには今日の日付が入っている。画面遷移の時には選択した日を渡す
+        createDiaryVC.date = selectDate//createDiaryVCがなぜ使える？？
         self.navigationController?.pushViewController(createDiaryVC, animated: true)
     }
-    
+    //カレンダーやdiaryTextViewなどの見た目をsetupViewとして書いたもの
     private func setupView() {
         self.calendar.dataSource = self
         self.calendar.delegate = self
@@ -51,10 +53,10 @@ class ShowCalenderViewController: UIViewController {
         plusButton.layer.shadowColor = UIColor.black.cgColor
         plusButton.layer.shadowOffset = CGSize(width: 3, height: 3)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "戻る", style: .plain, target: nil, action: nil)
-        diaryTextView.text = diaryData.getEventData(selectDate: selectDate)
+        diaryTextView.text = diaryData.getEventData(selectDate: selectDate)//diaryTextViewにgetEventDataで保存された内容を表示。diaryDataは先頭小文字？？
     }
 }
-
+//カレンダーの休日の配色に関するメソッド
 extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         if self.judgeHoliday(date) { return .red }
@@ -65,7 +67,7 @@ extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, 
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        selectDate = date
+        selectDate = date//ここのdateでselectDateには選択された日付が入っているので画面遷移時には選択された日付が渡される
         if selectDate > Date() {
             diaryTextView.isHidden = true
             plusButton.isHidden = true
@@ -75,7 +77,7 @@ extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, 
         }
         diaryTextView.text = diaryData.getEventData(selectDate: selectDate)
     }
-    
+    //カレンダーの祝日に関するメソッド
     private func judgeHoliday(_ date: Date) -> Bool {
         let tmpCalendar = Calendar(identifier: .gregorian)
         let year = tmpCalendar.component(.year, from: date)
@@ -84,9 +86,13 @@ extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, 
         let holiday = CalculateCalendarLogic()
         return holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
     }
-    
+    //週にかんするメソッド？？
     private func getWeekIdx(_ date: Date) -> Int {
         let tmpCalendar = Calendar(identifier: .gregorian)
         return tmpCalendar.component(.weekday, from: date)
+    }
+    //点マークをつける関数
+    func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
+        return true
     }
 }
