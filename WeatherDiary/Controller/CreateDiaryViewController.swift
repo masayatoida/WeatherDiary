@@ -77,8 +77,8 @@ class CreateDiaryViewController: UIViewController {
         weatherManager.getWeatherDate(latitude: locationManager.latitudeNow, longitude: locationManager.longitudeNow) { result in
             print("リザルト:large_red_square:\(result)")
             switch result {
-            case .success(let descriptionWeather):
-                switch descriptionWeather {
+            case .success(let weatherData):
+                switch weatherData.descriptionWeather {
                 case "Clouds":
                     self.weatherLabel.text = "曇り"
                 case "Rain":
@@ -88,7 +88,10 @@ class CreateDiaryViewController: UIViewController {
                 default:
                     self.weatherLabel.text = "晴れ"
                 }
-                self.weatherImageView.image = UIImage(named: descriptionWeather)
+                self.weatherImageView.image = UIImage(named: weatherData.descriptionWeather)
+                self.minimumTemp.text = "\(weatherData.tempMin)°C"
+                self.maxTemp.text = "\(weatherData.tempMax)°C"
+                self.rainyPercent.text = "湿度\(weatherData.humidity)%"
             case .failure(let failure):
                 print("天気情報取得エラー：\(failure)")
                 self.weatherLabel.text = "天気情報を取得できませんでした"
@@ -98,11 +101,12 @@ class CreateDiaryViewController: UIViewController {
     
     private func saveDate() {
         if editDiaryTextView.text == "" { return } // editDiaryTextViewに文字がなければ以下の処理は実行しない。
-        // diaryData.getEventData
+        guard let editDiaryText = editDiaryTextView.text else { return }
+        
         if diaryData.getEventData(selectDate: date) == "" {
-            diaryData.saveData(date: date.string(format: "yyyy/MM/dd"), event: editDiaryTextView.text ?? "")
+            diaryData.saveData(date: date.string(format: "yyyy/MM/dd"), event: editDiaryText)
         } else {
-            diaryData.updateData(selectDate: date, event: editDiaryTextView.text)
+            diaryData.updateData(selectDate: date, event: editDiaryText)
         }
         diaryData.allData()
     }
