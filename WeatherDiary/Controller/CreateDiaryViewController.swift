@@ -46,6 +46,7 @@ class CreateDiaryViewController: UIViewController {
     }
     
     @IBAction func didTapDeleteButton(_ sender: Any) {
+        diaryData.deleteData(selectDate: date)
         self.navigationController?.popViewController(animated: true)
     }
     // 画面遷移した後の初期画面に関するメソッド
