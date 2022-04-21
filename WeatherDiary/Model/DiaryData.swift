@@ -14,7 +14,7 @@ class DiaryData: Object {
 }
 
 extension DiaryData {
-    func saveData(date: String, event: String){
+    func saveData (date: String, event: String){
         let realm = try! Realm()
         let diaryData = DiaryData()
         diaryData.date = date
