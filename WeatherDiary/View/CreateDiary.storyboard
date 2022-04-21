@@ -109,6 +109,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="MainColor2"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Lad-UU-yix" secondAttribute="bottom" constant="20" id="43m-yK-IV8"/>
                             <constraint firstItem="FvZ-57-rG8" firstAttribute="top" secondItem="6mi-6K-jtV" secondAttribute="bottom" constant="40" id="5hp-0n-UUf"/>
@@ -121,6 +122,9 @@
                             <constraint firstItem="Lad-UU-yix" firstAttribute="top" secondItem="FvZ-57-rG8" secondAttribute="bottom" constant="40" id="naa-5v-QbI"/>
                             <constraint firstItem="6mi-6K-jtV" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="xVF-lO-QGu"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="4s3-md-KX0" appends="YES" id="VKK-yb-lAB"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="5Co-bF-Y78">
                         <barButtonItem key="rightBarButtonItem" image="trash" catalog="system" id="xOl-wv-N3t">
@@ -141,6 +145,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="4s3-md-KX0">
+                    <connections>
+                        <action selector="tapRecognizer:" destination="Y6W-OH-hqX" id="qej-9f-wga"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1034.7826086956522" y="85.714285714285708"/>
         </scene>

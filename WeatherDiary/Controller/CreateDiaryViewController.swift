@@ -49,6 +49,9 @@ class CreateDiaryViewController: UIViewController {
         diaryData.deleteData(selectDate: date)
         self.navigationController?.popViewController(animated: true)
     }
+    @IBAction func tapRecognizer(_ sender: Any) {
+        view.endEditing(true)
+    }
     // 画面遷移した後の初期画面に関するメソッド
     private func setupView() {
         navigationItem.title = date.string(format: "yyyy/MM/dd")
