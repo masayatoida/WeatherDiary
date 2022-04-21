@@ -14,7 +14,7 @@ class CreateDiaryViewController: UIViewController {
     @IBOutlet private weak var minimumTemp: UILabel!
     @IBOutlet private weak var maxTemp: UILabel!
     @IBOutlet private weak var rainyPercent: UILabel!
-    @IBOutlet private weak var weatherIcon: UIImageView!
+    @IBOutlet private weak var weatherImageView: UIImageView!
     @IBOutlet private weak var weatherView: UIView!
     @IBOutlet private weak var editDiaryTextView: UITextView!
     @IBOutlet private weak var saveButton: UIButton!
@@ -87,10 +87,8 @@ class CreateDiaryViewController: UIViewController {
                     self.weatherLabel.text = "雪"
                 default:
                     self.weatherLabel.text = "晴れ"
-                    // let json = JSON(response.data as Any)
-                    // self.maxTemp.text = "\(Int(json["main"]["temp_max"].number!).description)℃"
-                    // self.minimumTemp.text = "\(Int(json["main"]["temp_min"].number!).description)℃"
                 }
+                self.weatherImageView.image = UIImage(named: descriptionWeather)
             case .failure(let failure):
                 print("天気情報取得エラー：\(failure)")
                 self.weatherLabel.text = "天気情報を取得できませんでした"

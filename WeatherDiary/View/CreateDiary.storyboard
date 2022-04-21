@@ -135,7 +135,7 @@
                         <outlet property="minimumTemp" destination="MNp-Nv-HgG" id="97Y-g7-V6i"/>
                         <outlet property="rainyPercent" destination="q92-ox-pXH" id="Vra-QR-GIq"/>
                         <outlet property="saveButton" destination="Lad-UU-yix" id="Alk-jb-LPZ"/>
-                        <outlet property="weatherIcon" destination="9mY-xa-Jmp" id="Jjw-X0-Rmc"/>
+                        <outlet property="weatherImageView" destination="9mY-xa-Jmp" id="Jjw-X0-Rmc"/>
                         <outlet property="weatherLabel" destination="qgX-fO-bN3" id="y9V-PJ-W9f"/>
                         <outlet property="weatherView" destination="6mi-6K-jtV" id="hCK-b1-zCY"/>
                     </connections>
