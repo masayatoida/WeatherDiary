@@ -15,6 +15,7 @@ class ShowCalenderViewController: UIViewController {
     @IBOutlet private weak var plusButton: UIButton!
     @IBOutlet private weak var diaryTextView: UITextView!
     
+    // カレンダーフォーマットに関する記述
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -22,20 +23,20 @@ class ShowCalenderViewController: UIViewController {
         return formatter
     }()
     
-    private var selectDate = Date()
-    private let locationManager = LocationManager()
+    private var selectDate = Date() // selectDateに今日の日付を入れる
+    private let locationManager = LocationManager() // LocationManagerクラスをインスタンス化
     private let diaryData = DiaryData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.setupLocationManager()
+        locationManager.setupLocationManager() // LocationManagerのsetupLocationManagerを呼ぶ
         setupView()
     }
     
     @IBAction func didTapToCreateDiary(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "CreateDiary", bundle: nil)
         let createDiaryVC = storyboard.instantiateViewController(withIdentifier: "CreateDiary") as! CreateDiaryViewController
-        createDiaryVC.date = selectDate
+        createDiaryVC.date = selectDate // selectDateには今日の日付が入っているが画面遷移の時には選択した日を渡す
         self.navigationController?.pushViewController(createDiaryVC, animated: true)
     }
     
@@ -51,7 +52,7 @@ class ShowCalenderViewController: UIViewController {
         plusButton.layer.shadowColor = UIColor.black.cgColor
         plusButton.layer.shadowOffset = CGSize(width: 3, height: 3)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "戻る", style: .plain, target: nil, action: nil)
-        diaryTextView.text = diaryData.getEventData(selectDate: selectDate)
+        diaryTextView.text = diaryData.getEventData(selectDate: selectDate)  // diaryTextViewにgetEventDataで保存された内容を表示。
     }
 }
 
@@ -64,18 +65,15 @@ extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, 
         return nil
     }
     
+    // 日付を選択したときに呼ばれるメソッド
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        selectDate = date
-        if selectDate > Date() {
-            diaryTextView.isHidden = true
-            plusButton.isHidden = true
-        } else {
-            diaryTextView.isHidden = false
-            plusButton.isHidden = false
-        }
+        selectDate = date // ここのdateでselectDateには選択された日付が入るので画面遷移時には選択された日付が渡される
+        let today = Date()
+        diaryTextView.isHidden = selectDate > today
+        plusButton.isHidden = selectDate > today
         diaryTextView.text = diaryData.getEventData(selectDate: selectDate)
     }
-    
+    // カレンダーの祝日に関するメソッド
     private func judgeHoliday(_ date: Date) -> Bool {
         let tmpCalendar = Calendar(identifier: .gregorian)
         let year = tmpCalendar.component(.year, from: date)
@@ -84,7 +82,7 @@ extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, 
         let holiday = CalculateCalendarLogic()
         return holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
     }
-    
+    // 1週間の情報を取得するためのメソッド
     private func getWeekIdx(_ date: Date) -> Int {
         let tmpCalendar = Calendar(identifier: .gregorian)
         return tmpCalendar.component(.weekday, from: date)

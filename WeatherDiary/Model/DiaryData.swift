@@ -1,8 +1,8 @@
 //
-//  DiaryData.swift
-//  WeatherDiary
+// DiaryData.swift
+// WeatherDiary
 //
-//  Created by 戸井田莉江 on 2022/04/01.
+// Created by 戸井田莉江 on 2022/04/01.
 //
 
 import Foundation
@@ -14,7 +14,7 @@ class DiaryData: Object {
 }
 
 extension DiaryData {
-    func saveData(date: String, event: String){
+    func saveData (date: String, event: String){
         let realm = try! Realm()
         let diaryData = DiaryData()
         diaryData.date = date
@@ -44,6 +44,15 @@ extension DiaryData {
         let selectDateDiaryData = diaryData.filter("date == %@", selectDate.string(format: "yyyy/MM/dd"))
         try! realm.write {
             selectDateDiaryData.first?.event = event
+        }
+    }
+    
+    func deleteData(selectDate: Date) {
+        let realm = try! Realm()
+        let diaryData = realm.objects(DiaryData.self)
+        let selectDateDiaryData = diaryData.filter("date == %@", selectDate.string(format: "yyyy/MM/dd"))
+        try! realm.write {
+            realm.delete(selectDateDiaryData)
         }
     }
 }
