@@ -1,91 +1,109 @@
 {
   "images" : [
     {
+      "filename" : "Icon-App-40x40@1x-1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "(60 × 60 px).png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
+      "filename" : "日記アイコン (58 × 58 px).png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
+      "filename" : "日記アイコン (58 × 58 px) (87 × 87 px).png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
+      "filename" : "日記アイコン (58 × 58 px) (80 × 80 px).png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "日記アイコン (58 × 58 px) (80 × 80 px) (120 × 120 px).png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
+      "filename" : "日記アイコン (58 × 58 px) (80 × 80 px) (120 × 120 px)-1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
+      "filename" : "日記アイコン (58 × 58 px) (80 × 80 px) (120 × 120 px) (152 × 152 px) (180 × 180 px).png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
+      "filename" : "Icon-App-20x20@1x.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
     },
     {
+      "filename" : "Icon-App-40x40@1x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "Icon-App-29x29@1x.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
+      "filename" : "日記アイコン (58 × 58 px)-1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
+      "filename" : "Icon-App-40x40@1x-2.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
+      "filename" : "日記アイコン (58 × 58 px) (80 × 80 px)-1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "Icon-App-76x76@1x.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
+      "filename" : "日記アイコン (58 × 58 px) (80 × 80 px) (120 × 120 px) (152 × 152 px).png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
+      "filename" : "日記アイコン (58 × 58 px) (80 × 80 px) (120 × 120 px) (152 × 152 px) (180 × 180 px) (167 × 167 px).png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
     },
     {
+      "filename" : "日記アイコン (58 × 58 px) (80 × 80 px) (120 × 120 px) (152 × 152 px) (180 × 180 px) (167 × 167 px) (1024 × 1024 px).png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
