@@ -23,26 +23,23 @@ class ShowCalenderViewController: UIViewController {
         return formatter
     }()
     
-    private var selectDate = Date() // selectDateに今日の日付を入れた
-    private let locationManager = LocationManager() // LocationManager()はmodelファイル全体という意味?別ファイルでも入れられる？
+    private var selectDate = Date() // selectDateに今日の日付を入れる
+    private let locationManager = LocationManager() // LocationManagerクラスをインスタンス化
     private let diaryData = DiaryData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.setupLocationManager() // LocationManagerのsetupLocationManagerという関数を呼ぶ
-        setupView() // ２つ下のブロックsetupViewを呼ぶ
+        locationManager.setupLocationManager() // LocationManagerのsetupLocationManagerを呼ぶ
+        setupView()
     }
     
-    // 画面遷移のブロック
     @IBAction func didTapToCreateDiary(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "CreateDiary", bundle: nil)
         let createDiaryVC = storyboard.instantiateViewController(withIdentifier: "CreateDiary") as! CreateDiaryViewController
-        // selectDateには今日の日付が入っている。画面遷移の時には選択した日を渡す
-        createDiaryVC.date = selectDate
+        createDiaryVC.date = selectDate // selectDateには今日の日付が入っているが画面遷移の時には選択した日を渡す
         self.navigationController?.pushViewController(createDiaryVC, animated: true)
     }
     
-    // カレンダーやdiaryTextViewなどの見た目をsetupViewとして書いたもの
     private func setupView() {
         self.calendar.dataSource = self
         self.calendar.delegate = self
@@ -59,7 +56,6 @@ class ShowCalenderViewController: UIViewController {
     }
 }
 
-// カレンダーの休日の配色に関するメソッド
 extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         if self.judgeHoliday(date) { return .red }
@@ -71,12 +67,10 @@ extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, 
     
     // 日付を選択したときに呼ばれるメソッド
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        selectDate = date // ここのdateでselectDateには選択された日付が入っているので画面遷移時には選択された日付が渡される
-        
+        selectDate = date // ここのdateでselectDateには選択された日付が入るので画面遷移時には選択された日付が渡される
         let today = Date()
-        diaryTextView.isHidden = selectDate > today ? true : false
-        plusButton.isHidden = selectDate > today ? true : false
-        
+        diaryTextView.isHidden = selectDate > today
+        plusButton.isHidden = selectDate > today
         diaryTextView.text = diaryData.getEventData(selectDate: selectDate)
     }
     // カレンダーの祝日に関するメソッド
@@ -92,9 +86,5 @@ extension ShowCalenderViewController: FSCalendarDelegate, FSCalendarDataSource, 
     private func getWeekIdx(_ date: Date) -> Int {
         let tmpCalendar = Calendar(identifier: .gregorian)
         return tmpCalendar.component(.weekday, from: date)
-    }
-    // 点マークをつける関数
-    func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
-        return true
     }
 }

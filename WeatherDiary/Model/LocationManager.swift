@@ -15,12 +15,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func isPermission() -> Bool {
         let manager = CLLocationManager()
-        return manager.authorizationStatus == .denied ? false : true
+        return manager.authorizationStatus != .denied
     }
     
     func setupLocationManager() {
         locationManager = CLLocationManager()
-        //locationManagerに値があれば代入されなければこの先のブロックはよばれない？
         guard let locationManager = locationManager else { return }
         locationManager.requestWhenInUseAuthorization()
         let manager = CLLocationManager()
