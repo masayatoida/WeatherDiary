@@ -647,7 +647,7 @@
 				DEVELOPMENT_TEAM = 9DBV92A7H9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherDiary/Info.plist;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "WeatherDiaryは天気情報を取得するために位置情報を使用します。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -677,7 +677,7 @@
 				DEVELOPMENT_TEAM = 9DBV92A7H9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherDiary/Info.plist;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "WeatherDiaryは天気情報を取得するために位置情報を使用します。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
